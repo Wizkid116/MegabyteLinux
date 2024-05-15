@@ -22,8 +22,8 @@ ln -s $(realpath ccc) ../toybox-*
 #build Toybox and copy binaries to filesystem folder
 cd ../toybox-*
 cp ../toyboxconfig .config
-make LDFLAGS=--static CROSS_COMPILE=~/Desktop/tinux/i686-linux-musl-cross/bin/i686-linux-musl- -j5
-make LDFLAGS=--static CROSS_COMPILE=~/Desktop/tinux/i686-linux-musl-cross/bin/i686-linux-musl- install
+make LDFLAGS=--static CROSS_COMPILE=../i686-linux-musl-cross/bin/i686-linux-musl- -j5
+make LDFLAGS=--static CROSS_COMPILE=../i686-linux-musl-cross/bin/i686-linux-musl- install
 mv install ../filesystem
 
 #Make the rest of the root directories
