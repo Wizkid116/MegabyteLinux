@@ -1,7 +1,7 @@
 # MegabyteLinux
 MegabyteLinux is a custom linux image and set of scripts based on Floppinux that build a 32-bit Linux liveimage that fits in 1MB of disk space
 
-## Features:
+## Features
 
 * Linux kernel 6.9 (nice)
 * Toybox
@@ -9,6 +9,7 @@ MegabyteLinux is a custom linux image and set of scripts based on Floppinux that
 * Syslinux
 * 8MB ram usage
 * TTY (wow)
+  
   Final size = 965Kb
 ## Requirements
 To build Megabyte Linux, you need to have the following packages installed(mostly identical to the linux kernel):
@@ -42,7 +43,7 @@ then be patient :)
 
 even on my Thinkpad T480, everything takes only about 3 minutes to compile. 
 
-## Running
+## Run
 to run the final image:
 ```
 qemu-system-i386 -hda megabyte.img
