@@ -25,6 +25,7 @@ To build Megabyte Linux, you need to have the following packages installed(mostl
 * libssl-dev
 * qemu #optional, for testing the image
 * syslinux
+* wget
 * xz
 
 ## Build
