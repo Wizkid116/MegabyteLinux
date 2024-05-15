@@ -7,9 +7,9 @@ MegabyteLinux is a custom linux image and set of scripts based on Floppinux that
 * Toybox
 * Musl (cause Glibc is massive)
 * Syslinux
-* 1MB in size
 * 8MB ram usage
 * TTY (wow)
+  Final size = 965Kb
 ## Requirements
 To build Megabyte Linux, you need to have the following packages installed(mostly identical to the linux kernel):
 * bc
