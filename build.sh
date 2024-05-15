@@ -8,7 +8,9 @@ wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-linux-
 tar xvf linux-*.tar.xz
 tar xvf toybox-*.tar.gz
 tar xvf i686-linux-musl-cross.tar.xz
-
+rm linux-*.tar.xz
+rm toybox-*.tar.gz
+rm i686-*.tar.xz
 #build Linux
 cd linux-*
 cp ../linuxconfig .config
@@ -64,6 +66,7 @@ sudo chown -R root:root .
 #compress the rootfs
 find . | cpio -H newc -o | xz --check=crc32 > ../rootfs.cpio.xz
 
+cd ..
 #make syslinux config file
 cat >> syslinux.cfg << EOF
 DEFAULT linux
