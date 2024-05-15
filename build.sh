@@ -74,14 +74,14 @@ APPEND initrd=rootfs.cpio.xz
 EOF
 
 #build the final image file
-dd if=/dev/zero of=tinux.img bs=1k count=1000
-mkdosfs tinux.img
-syslinux --install tinux.img
-sudo mount -o loop tinux.img /mnt
+dd if=/dev/zero of=megabyte.img bs=1k count=1000
+mkdosfs megabyte.img
+syslinux --install megabyte.img
+sudo mount -o loop megabyte.img /mnt
 sudo cp bzImage /mnt
 sudo cp rootfs.cpio.xz /mnt
 sudo cp syslinux.cfg /mnt
 sudo umount /mnt
 echo "Done!"
 echo "To test the final image, use the following command:"
-echo "'qemu-system-i386 -hda tinux.img'"
+echo "'qemu-system-i386 -hda megabyte.img'"
