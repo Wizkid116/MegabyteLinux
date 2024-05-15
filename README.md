@@ -45,7 +45,7 @@ even on my Thinkpad T480, everything takes only about 3 minutes to compile.
 ## Running
 to run the final image:
 ```
-qemu-system-i386 -hda tinux.img
+qemu-system-i386 -hda megabyte.img
 ```
 Also included is a precompiled image if you want to check that out:
 ```
