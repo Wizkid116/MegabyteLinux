@@ -2,9 +2,9 @@
 set -euo pipefail
 
 #download and extract source code
-wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.9.tar.xz
-wget https://landley.net/toybox/downloads/toybox-0.8.9.tar.gz
-wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-linux-musl-cross.tar.xz
+wget -N https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.9.9.tar.xz
+wget -N https://landley.net/toybox/downloads/toybox-0.8.11.tar.gz
+wget -N https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-linux-musl-cross.tar.xz
 tar xvf linux-*.tar.xz
 tar xvf toybox-*.tar.gz
 tar xvf i686-linux-musl-cross.tar.xz
@@ -24,7 +24,7 @@ ln -s $(realpath ccc) ../toybox-*
 #build Toybox and copy binaries to filesystem folder
 cd ../toybox-*
 cp ../toyboxconfig .config
-make LDFLAGS=--static CROSS_COMPILE=../i686-linux-musl-cross/bin/i686-linux-musl- -j5
+make LDFLAGS=--static CROSS_COMPILE=../i686-linux-musl-cross/bin/i686-linux-musl- -j$(nproc)
 make LDFLAGS=--static CROSS_COMPILE=../i686-linux-musl-cross/bin/i686-linux-musl- install
 mv install ../filesystem
 
@@ -71,7 +71,7 @@ cd ..
 cat >> syslinux.cfg << EOF
 DEFAULT linux
 LABEL linux
-SAY [ BOOTING MEGABYTE LINUX VERSION 0.1 ]
+SAY [ BOOTING MEGABYTE LINUX VERSION 0.2 ]
 KERNEL bzImage
 APPEND initrd=rootfs.cpio.xz
 EOF
@@ -85,6 +85,7 @@ sudo cp bzImage /mnt
 sudo cp rootfs.cpio.xz /mnt
 sudo cp syslinux.cfg /mnt
 sudo umount /mnt
+rm syslinux.cfg
 echo "Done!"
 echo "To test the final image, use the following command:"
 echo "'qemu-system-i386 -hda megabyte.img'"
