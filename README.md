@@ -50,5 +50,5 @@ qemu-system-i386 -hda megabyte.img
 ```
 Also included is a precompiled image if you want to check that out:
 ```
-qemu-system-i386 -hda tinux-works.img
+qemu-system-i386 -hda megabyte-works.img
 ```
