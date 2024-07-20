@@ -1,5 +1,7 @@
 #!/bin/bash
 set -euo pipefail
+#removes any files leftover from previous builds
+sudo rm -rf filesystem/ bzImage i686-linux-musl-cross linux-6.9.9 megabyte.img rootfs.cpio.xz toybox-0.8.11
 
 #download and extract source code
 wget -N https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.9.9.tar.xz
@@ -8,21 +10,22 @@ wget -N https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-lin
 tar xvf linux-*.tar.xz
 tar xvf toybox-*.tar.gz
 tar xvf i686-linux-musl-cross.tar.xz
-rm linux-*.tar.xz
-rm toybox-*.tar.gz
-rm i686-*.tar.xz
+#rm linux-*.tar.xz
+#rm toybox-*.tar.gz
+#rm i686-*.tar.xz
+
 #build Linux
-cd linux-*
+cd linux-*/
 cp ../linuxconfig .config
 make ARCH=x86 bzImage -j$(nproc)
 cp arch/x86/boot/bzImage ../bzImage
 
 #link name of cc to toybox for cross-compilation
 cd ../i686-linux-musl-cross
-ln -s $(realpath ccc) ../toybox-*
+ln -s $(realpath ccc) ../toybox-*/
 
 #build Toybox and copy binaries to filesystem folder
-cd ../toybox-*
+cd ../toybox-*/
 cp ../toyboxconfig .config
 make LDFLAGS=--static CROSS_COMPILE=../i686-linux-musl-cross/bin/i686-linux-musl- -j$(nproc)
 make LDFLAGS=--static CROSS_COMPILE=../i686-linux-musl-cross/bin/i686-linux-musl- install
@@ -38,8 +41,6 @@ sudo mknod dev/null c 1 3
 cat >> welcome << EOF
 Welcome to Megabyte Linux!
 There's not much to do in 1MB of space, so enjoy the view...
-(NOTE): there's no ls command at the moment,
-so use "echo *" for now.
 EOF
 
 #make the inittab
