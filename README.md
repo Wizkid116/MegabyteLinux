@@ -52,3 +52,9 @@ Also included is a precompiled image if you want to check that out:
 ```
 qemu-system-i386 -hda megabyte-works.img
 ```
+
+### Donate
+If you like my silly little project, then chuck me some Monero:
+```
+46FgbLQXEFPbsZzzpF1ecQ7BrQc4YXjiF6pNv8sWjfg2Ri9LkPoEWspFxPwu7US19hXMP4mWrEwwzSPQzZaGZ9eM4iRPf82
+```
